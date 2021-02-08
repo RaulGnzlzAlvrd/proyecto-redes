@@ -1,0 +1,19 @@
+ GNU nano 4.8               Redesbot.service
+[Unit]
+Description=Bot de telegram
+After=network.target
+
+[Service]
+Type=Simple
+ExecStart=/usr/local/bin/pipenv run python3 /home/ubuntu/proyecto-redes/bot/main.py
+WorkingDirectory=/home/ubuntu/proyecto-redes/bot
+Restart=always
+User=ubuntu
+Environment="PYTHONPATH=$PYTHONPATH:/lib/python3/site-packages"
+StandardOutput=append:/var/log/redes.log
+StandardError=append:/var/log/redes.log
+SyslogIdentifier=redes
+
+[Install]
+WantedBy=multi-user.target
+
